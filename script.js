@@ -8,6 +8,7 @@ function onSignIn(googleUser) {
   document.getElementById("login-section").style.display = "none";
   document.querySelector(".chat-container").style.display = "block";
 }
-
-
-
+function onFailure(error) {
+  alert("Login Failed. Please try again.");
+  console.error("Error details:", error);
+}
