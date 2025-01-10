@@ -1,191 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="Y42hS8U9P76KKAABORHWbRjbp66XdfTj06F2iASD0VA" />
-    <title>Chatbox Design</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f3f3f3;
-        }
-
-        .chat-container {
-            width: 400px;
-            margin: 50px auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            background-color: #fff;
-            display: none;
-        }
-
-        .chat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #f8f8f8;
-            border-bottom: 1px solid #ddd;
-            border-radius: 10px 10px 0 0;
-        }
-
-        .chat-header h2 {
-            font-size: 18px;
-            margin: 0;
-        }
-
-        .chat-header .icons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-header .icons i {
-            cursor: pointer;
-        }
-
-        .chat-content {
-            padding: 20px;
-            height: 300px;
-            overflow-y: auto;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .message {
-            margin-bottom: 20px;
-        }
-
-        .message.bot {
-            text-align: left;
-        }
-
-        .message.visitor {
-            text-align: right;
-        }
-
-        .message .bubble {
-            display: inline-block;
-            padding: 10px 15px;
-            border-radius: 20px;
-            background-color: #e0e0e0;
-            color: #333;
-            max-width: 70%;
-        }
-
-        .message.visitor .bubble {
-            background-color: #0078ff;
-            color: #fff;
-        }
-
-        .chat-footer {
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-radius: 0 0 10px 10px;
-            background-color: #f8f8f8;
-        }
-
-        .chat-footer input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-        }
-
-        .chat-footer button {
-            padding: 10px 15px;
-            border: none;
-            background-color: #0078ff;
-            color: #fff;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        .chat-footer button:hover {
-            background-color: #005bb5;
-        }
-
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f3f3f3;
-        }
-    </style>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-        function handleCredentialResponse(response) {
-            try {
-                const decodedCredential = JSON.parse(atob(response.credential.split('.')[1]));
-                const email = decodedCredential.email;
-
-                if (email) {
-                    document.querySelector('.login-container').style.display = 'none';
-                    document.querySelector('.chat-container').style.display = 'block';
-                } else {
-                    alert('Login Failed');
-                }
-            } catch (error) {
-                console.error('Error parsing credential:', error);
-                alert('Invalid login response.');
-            }
-        }
-
-        window.onload = function () {
-            google.accounts.id.initialize({
-                client_id: '209412866384-nq13bahbncp26hk062mkj0u0sd0kgfd1.apps.googleusercontent.com',
-                callback: handleCredentialResponse
-            });
-
-            google.accounts.id.renderButton(
-                document.getElementById('google-login-button'),
-                { theme: 'outline', size: 'large' }
-            );
-        };
-
-        function sendMessage() {
-            const input = document.getElementById('message-input');
-            const messageText = input.value.trim();
-            if (messageText) {
-                const chatContent = document.querySelector('.chat-content');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message visitor';
-                messageDiv.innerHTML = <div class="bubble">${messageText}</div>;
-                chatContent.appendChild(messageDiv);
-                input.value = '';
-                chatContent.scrollTop = chatContent.scrollHeight;
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="Y42hS8U9P76KKAABORHWbRjbp66XdfTj06F2iASD0VA" />
+  <title>Google Authentication</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="209412866384-nq13bahbncp26hk062mkj0u0sd0kgfd1.apps.googleusercontent.com">
 </head>
 <body>
-    <div class="login-container">
-        <div id="google-login-button"></div>
+  <div id="login-section">
+    <h1>Login to Access Chat</h1>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-onfailure="onFailure"></div>
+  </div>
+<div class="chat-container" style="display: none;">
+    <header class="chat-header">
+      <div class="chat-title">Chat with us!</div>
+      <div class="chat-controls">
+        <button class="like-btn">👍</button>
+        <button class="dislike-btn">👎</button>
+      </div>
+    </header>
+    <div class="chat-body">
+      <div class="message bot">
+        <span class="timestamp">Livechat 02:10 PM</span>
+        <p>Hello Nice</p>
+        <p>Welcome to LiveChat<br>I was made with.<br>Pick a topic from the list or type down a question!</p>
+      </div>
+      <div class="message user">
+        <span class="timestamp">Visitor 02:12 PM</span>
+        <p class="user-message">Welcome</p>
+      </div>
     </div>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>Chat with us!</h2>
-            <div class="icons">
-                <i>&#128077;</i>
-                <i>&#128078;</i>
-            </div>
-        </div>
-        <div class="chat-content">
-            <div class="message bot">
-                <div class="bubble">Hello Nice</div>
-            </div>
-            <div class="message bot">
-                <div class="bubble">Welcome to LiveChat. I was made with . Pick a topic from the list or type down a question!</div>
-            </div>
-        </div>
-        <div class="chat-footer">
-            <input type="text" id="message-input" placeholder="Write a message">
-            <button onclick="sendMessage()">Send</button>
-        </div>
-    </div>
+    <footer class="chat-footer">
+      <input type="text" placeholder="Write a message" class="message-input">
+      <button class="send-btn">➤</button>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
