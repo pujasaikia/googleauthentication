@@ -4,49 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="Y42hS8U9P76KKAABORHWbRjbp66XdfTj06F2iASD0VA" />
-  <title>Google Authentication</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Chat with Google Authentication</title>
+  <link rel="stylesheet" href="styles.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
 </head>
 <body>
-
-  <div id="login-section">
-    <h1>Login to Access Chat</h1>
-   
-    <div id="g_id_onload"
-         data-client_id="209412866384-nq13bahbncp26hk062mkj0u0sd0kgfd1.apps.googleusercontent.com"
-         data-callback="onSignIn"
-         data-auto_prompt="false">
-    </div>
-    <div class="g_id_signin" data-type="standard"></div>
-  </div>
-  
- <div class="chat-container" style="display: none;">
-    <header class="chat-header">
-      <div class="chat-title">Chat with us!</div>
-      <div class="chat-controls">
-        <button class="like-btn">👍</button>
-        <button class="dislike-btn">👎</button>
-      </div>
-    </header>
-    <div class="chat-body">
-      <div class="message bot">
-        <span class="timestamp">Livechat 02:10 PM</span>
-        <p>Hello Nice</p>
-        <p>Welcome to LiveChat<br>I was made with.<br>Pick a topic from the list or type down a question!</p>
-      </div>
-      <div class="message user">
-        <span class="timestamp">Visitor 02:12 PM</span>
-        <p class="user-message">Welcome</p>
-      </div>
-    </div>
-    <footer class="chat-footer">
-      <input type="text" placeholder="Write a message" class="message-input">
-      <button class="send-btn">➤</button>
-    </footer>
+  <div id="app">
+    <!-- Login or Chat UI will render here -->
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    let isLoggedIn = false;
+    let loginFailed = false;
+
+    function handleCredentialResponse(response) {
+      console.log('Login successful:', response);
+      isLoggedIn = true;
+      loginFailed = false;
+      renderUI();
+    }
+
+    function handleLoginFailure() {
+      console.log('Login failed.');
+      isLoggedIn = false;
+      loginFailed = true;
+      renderUI();
+    }
+
+    function renderUI() {
+      const appDiv = document.getElementById('app');
+      appDiv.innerHTML = '';
+
+      if (!isLoggedIn) {
+        appDiv.innerHTML = `
+          <div class="login-container">
+            <h2>Welcome! Please log in with Google to continue.</h2>
+            <div id="g_id_onload"
+                 data-client_id="209412866384-nq13bahbncp26hk062mkj0u0sd0kgfd1.apps.googleusercontent.com"
+                 data-callback="handleCredentialResponse">
+            </div>
+            <div class="g_id_signin" data-type="standard"></div>
+            ${loginFailed ? '<p class="error">Login Failed. Please try again.</p>' : ''}
+          </div>
+        `;
+      } else {
+        appDiv.innerHTML = `
+          <div class="chat-container">
+            <div class="chat-header">
+              <div class="chat-title">Chatbot</div>
+              <div class="chat-status"></div>
+            </div>
+            <div class="chat-body">
+              <div class="message">
+                <p><strong>Livechat</strong> 02:10 PM</p>
+                <p>Hello Nice</p>
+                <p>Welcome to LiveChat! I was made with. Pick a topic from the list or type down a question!</p>
+              </div>
+              <div class="user-message">
+                <button>Welcome</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    renderUI();
+  </script>
 </body>
 </html>
