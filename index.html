@@ -6,15 +6,19 @@
   <meta name="google-site-verification" content="Y42hS8U9P76KKAABORHWbRjbp66XdfTj06F2iASD0VA" />
   <title>Google Authentication</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="209412866384-nq13bahbncp26hk062mkj0u0sd0kgfd1.apps.googleusercontent.com">
+ <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
   <div id="login-section">
     <h1>Login to Access Chat</h1>
-    <div class="g-signin2" data-onsuccess="onSignIn" data-onfailure="onFailure"></div>
+    <div id="g_id_onload"
+         data-client_id="209412866384-nq13bahbncp26hk062mkj0u0sd0kgfd1.apps.googleusercontent.com"
+         data-callback="onSignIn"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
   </div>
-<div class="chat-container" style="display: none;">
+  <div class="chat-container" style="display: none;">
     <header class="chat-header">
       <div class="chat-title">Chat with us!</div>
       <div class="chat-controls">
@@ -38,7 +42,6 @@
       <button class="send-btn">➤</button>
     </footer>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
