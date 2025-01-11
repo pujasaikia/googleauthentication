@@ -1,0 +1,142 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Chat Container */
+.chat-container {
+  width: 360px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+  padding: 10px 15px;
+  background-color: #f5f6fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header .chat-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.chat-header .chat-controls button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+/* Chat Body */
+.chat-body {
+  padding: 10px 15px;
+  overflow-y: auto;
+  flex-grow: 1;
+  background: #f9f9f9;
+}
+
+.message {
+  margin-bottom: 15px;
+}
+
+.message.bot {
+  text-align: left;
+}
+
+.message.user {
+  text-align: right;
+}
+
+.message p {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: inline-block;
+  max-width: 70%;
+}
+
+.message.bot p {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+}
+
+.message.user p {
+  background: #006eff;
+  color: white;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: gray;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Footer */
+.chat-footer {
+  padding: 10px;
+  background: #f5f6fa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-footer input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-footer button {
+  background: #006eff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chat-footer button:hover {
+  background: #0056cc;
+}
+
+
+.branding {
+  text-align: center;
+  font-size: 12px;
+  padding: 5px;
+  background: #f9f9f9;
+}
+
+.branding a {
+  color: #006eff;
+  text-decoration: none;
+}
+
+.branding a:hover {
+  text-decoration: underline;
+}
