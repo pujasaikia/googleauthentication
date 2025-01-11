@@ -49,31 +49,30 @@
         `;
       } else {
         appDiv.innerHTML = `
-          <div class="chat-container">
-            <div class="chat-header">
-              <div class="chat-title">Chat with us!</div>
-              <div class="chat-status">
-                <span>👍</span>
-                <span>👎</span>
-              </div>
-            </div>
-            <div class="chat-body">
-              <div class="message">
-                <p><strong>Livechat</strong> 02:10 PM</p>
-                <p>Hello Nice</p>
-                <p>Welcome to LiveChat! I was made with.</p>
-                <p>Pick a topic from the list or type down a question!</p>
-              </div>
-              <div class="message user-message">
-                <p><strong>Visitor</strong> 02:12 PM</p>
-                <p>Welcome</p>
-              </div>
-            </div>
-            <div class="user-message">
-              <input type="text" placeholder="Write a message" />
-              <button>Send</button>
-            </div>
-          </div>
+           <div class="chat-container">
+    <header class="chat-header">
+      <div class="chat-title">Chat with us!</div>
+      <div class="chat-controls">
+        <button class="like-btn">👍</button>
+        <button class="dislike-btn">👎</button>
+      </div>
+    </header>
+    <div class="chat-body">
+      <div class="message bot">
+        <span class="timestamp">Livechat 02:10 PM</span>
+        <p>Hello Nice</p>
+        <p>Welcome to LiveChat<br>I was made with.<br>Pick a topic from the list or type down a question!</p>
+      </div>
+      <div class="message user">
+        <span class="timestamp">Visitor 02:12 PM</span>
+        <p class="user-message">Welcome</p>
+      </div>
+    </div>
+    <footer class="chat-footer">
+      <input type="text" placeholder="Write a message" class="message-input">
+      <button class="send-btn">➤</button>
+    </footer>
+  </div>
         `;
       }
     }
