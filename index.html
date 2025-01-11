@@ -6,12 +6,14 @@
   <meta name="google-site-verification" content="Y42hS8U9P76KKAABORHWbRjbp66XdfTj06F2iASD0VA" />
   <title>Google Authentication</title>
   <link rel="stylesheet" href="style.css">
- <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
 </head>
 <body>
+
   <div id="login-section">
     <h1>Login to Access Chat</h1>
+   
     <div id="g_id_onload"
          data-client_id="209412866384-nq13bahbncp26hk062mkj0u0sd0kgfd1.apps.googleusercontent.com"
          data-callback="onSignIn"
@@ -19,6 +21,7 @@
     </div>
     <div class="g_id_signin" data-type="standard"></div>
   </div>
+  
   <div class="chat-container" style="display: none;">
     <header class="chat-header">
       <div class="chat-title">Chat with us!</div>
@@ -29,13 +32,8 @@
     </header>
     <div class="chat-body">
       <div class="message bot">
-        <span class="timestamp">Livechat 02:10 PM</span>
-        <p>Hello Nice</p>
-        <p>Welcome to LiveChat<br>I was made with.<br>Pick a topic from the list or type down a question!</p>
-      </div>
-      <div class="message user">
-        <span class="timestamp">Visitor 02:12 PM</span>
-        <p class="user-message">Welcome</p>
+        <span class="timestamp">Livechat</span>
+        <p>Welcome to LiveChat. Pick a topic or ask a question!</p>
       </div>
     </div>
     <footer class="chat-footer">
@@ -43,6 +41,7 @@
       <button class="send-btn">➤</button>
     </footer>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
