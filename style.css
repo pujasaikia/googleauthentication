@@ -2,103 +2,83 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
-  text-align: center;
+  background-color: #f5f5f5;
 }
-
-h2 {
-  color: #444;
-}
-
 
 .chat-container {
-  max-width: 360px;
-  margin: 50px auto;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  margin: 20px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .chat-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #0078d7;
   color: #fff;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 
 .chat-title {
-  font-size: 16px;
   font-weight: bold;
 }
 
-.chat-status {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chat-status span {
-  margin-left: 5px;
-  background: #ffc107;
-  padding: 2px 5px;
-  font-size: 10px;
+.chat-controls button {
+  background: none;
+  border: none;
   color: #fff;
-  border-radius: 3px;
+  cursor: pointer;
 }
 
 .chat-body {
-  padding: 15px;
-  background-color: #f9f9f9;
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
 }
 
 .message {
-  background: #fff;
-  padding: 10px;
-  border-radius: 5px;
   margin-bottom: 10px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.message p {
-  margin: 5px 0;
-  font-size: 14px;
+.message.bot {
+  color: #000;
 }
 
-.user-message {
+.message.user {
+  text-align: right;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.chat-footer {
   display: flex;
-  align-items: center;
-  padding: 10px 15px;
   border-top: 1px solid #ddd;
-  background: #fff;
+  padding: 5px;
 }
 
-.user-message input {
+.message-input {
   flex: 1;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: none;
   padding: 10px;
-  font-size: 14px;
-  margin-right: 10px;
+  border-radius: 4px;
+  outline: none;
 }
 
-.user-message button {
-  background-color: #007bff;
+.send-btn {
+  background-color: #0078d7;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  font-size: 14px;
+  border-radius: 4px;
+  padding: 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.user-message button:hover {
-  background-color: #0056b3;
+  margin-left: 5px;
 }
