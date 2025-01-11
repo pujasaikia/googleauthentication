@@ -1,18 +1,15 @@
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); 
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); 
+function onSignIn(response) {
+  try {
+    const user = jwt_decode(response.credential);
+    console.log('ID:', user.sub);
+    console.log('Name:', user.name);
+    console.log('Image URL:', user.picture);
+    console.log('Email:', user.email);
 
-  document.getElementById("login-section").style.display = "none";
-  document.querySelector(".chat-container").style.display = "block";
+    document.getElementById("login-section").style.display = "none";
+    document.querySelector(".chat-container").style.display = "block";
+  } catch (error) {
+    console.error("Error during login processing:", error);
+    alert("Login Failed. Please try again.");
+  }
 }
-
-function onFailure(error) {
-  alert("Login Failed. Please try again.");
-  console.error("Error details:", error);
-}
-
-
-
