@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="app">
-    <!-- Login or Chat UI will render here -->
+    
   </div>
 
   <script>
@@ -51,18 +51,27 @@
         appDiv.innerHTML = `
           <div class="chat-container">
             <div class="chat-header">
-              <div class="chat-title">Chatbot</div>
-              <div class="chat-status"></div>
+              <div class="chat-title">Chat with us!</div>
+              <div class="chat-status">
+                <span>👍</span>
+                <span>👎</span>
+              </div>
             </div>
             <div class="chat-body">
               <div class="message">
                 <p><strong>Livechat</strong> 02:10 PM</p>
                 <p>Hello Nice</p>
-                <p>Welcome to LiveChat! I was made with. Pick a topic from the list or type down a question!</p>
+                <p>Welcome to LiveChat! I was made with.</p>
+                <p>Pick a topic from the list or type down a question!</p>
               </div>
-              <div class="user-message">
-                <button>Welcome</button>
+              <div class="message user-message">
+                <p><strong>Visitor</strong> 02:12 PM</p>
+                <p>Welcome</p>
               </div>
+            </div>
+            <div class="user-message">
+              <input type="text" placeholder="Write a message" />
+              <button>Send</button>
             </div>
           </div>
         `;
