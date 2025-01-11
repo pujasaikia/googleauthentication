@@ -5,159 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="Y42hS8U9P76KKAABORHWbRjbp66XdfTj06F2iASD0VA" />
   <title>Chat with Google Authentication</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    /* Chat Container */
-    .chat-container {
-      width: 360px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      background: white;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    /* Header */
-    .chat-header {
-      padding: 10px 15px;
-      background-color: #f5f6fa;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .chat-header .chat-title {
-      font-weight: bold;
-      font-size: 16px;
-      color: #333;
-    }
-
-    .chat-header .chat-controls button {
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    /* Chat Body */
-    .chat-body {
-      padding: 10px 15px;
-      overflow-y: auto;
-      flex-grow: 1;
-      background: #f9f9f9;
-    }
-
-    .message {
-      margin-bottom: 15px;
-    }
-
-    .message.bot {
-      text-align: left;
-    }
-
-    .message.user {
-      text-align: right;
-    }
-
-    .message p {
-      margin: 5px 0;
-      padding: 10px;
-      border-radius: 8px;
-      font-size: 14px;
-      display: inline-block;
-      max-width: 70%;
-    }
-
-    .message.bot p {
-      background: #fff;
-      border: 1px solid #e0e0e0;
-    }
-
-    .message.user p {
-      background: #006eff;
-      color: white;
-    }
-
-    .timestamp {
-      font-size: 12px;
-      color: gray;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    /* Footer */
-    .chat-footer {
-      padding: 10px;
-      background: #f5f6fa;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .chat-footer input {
-      flex-grow: 1;
-      padding: 10px;
-      border: 1px solid #e0e0e0;
-      border-radius: 20px;
-      outline: none;
-      font-size: 14px;
-    }
-
-    .chat-footer button {
-      background: #006eff;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 18px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .chat-footer button:hover {
-      background: #0056cc;
-    }
-
-  
-    .branding {
-      text-align: center;
-      font-size: 12px;
-      padding: 5px;
-      background: #f9f9f9;
-    }
-
-    .branding a {
-      color: #006eff;
-      text-decoration: none;
-    }
-
-    .branding a:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
 <body>
   <div id="app">
-  
+    
   </div>
 
   <script>
-    let isLoggedIn = true; 
+    let isLoggedIn = false;
+    let loginFailed = false;
+
+    function handleCredentialResponse(response) {
+      console.log('Login successful:', response);
+      isLoggedIn = true;
+      loginFailed = false;
+      renderUI();
+    }
+
+    function handleLoginFailure() {
+      console.log('Login failed.');
+      isLoggedIn = false;
+      loginFailed = true;
+      renderUI();
+    }
 
     function renderUI() {
       const appDiv = document.getElementById('app');
@@ -166,17 +38,18 @@
       if (!isLoggedIn) {
         appDiv.innerHTML = `
           <div class="login-container">
-            <h2>Login to access chat</h2>
+            <h2>Welcome! Please log in with Google to continue.</h2>
             <div id="g_id_onload"
                  data-client_id="209412866384-nq13bahbncp26hk062mkj0u0sd0kgfd1.apps.googleusercontent.com"
                  data-callback="handleCredentialResponse">
             </div>
             <div class="g_id_signin" data-type="standard"></div>
+            ${loginFailed ? '<p class="error">Login Failed. Please try again.</p>' : ''}
           </div>
         `;
       } else {
         appDiv.innerHTML = `
-          <div class="chat-container">
+           <div class="chat-container">
             <header class="chat-header">
               <div class="chat-title">Chatbot <span style="font-size: 12px; color: #999;">ALISHA</span></div>
               <div class="chat-controls">
